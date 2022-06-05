@@ -208,7 +208,7 @@ function parseActionToChatItem(data: Action): ChatItem | null {
   } else if ("purchaseAmountText" in messageRenderer) {
     ret.superchat = {
       amount: messageRenderer.purchaseAmountText.simpleText,
-      color: convertColorToHex6(messageRenderer.bodyBackgroundColor),
+      color: convertColorToHex6(messageRenderer.headerBackgroundColor),
     }
   }
 

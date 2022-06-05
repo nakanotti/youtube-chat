@@ -254,7 +254,7 @@ describe("Parser", () => {
           ],
           superchat: {
             amount: "￥1,000",
-            color: "#FFCA28",
+            color: "#FFB300",
           },
           isMembership: false,
           isVerified: false,
