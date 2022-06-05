@@ -151,7 +151,7 @@ function parseActionToChatItem(data: Action): ChatItem | null {
   let message: MessageRun[] = []
   if ("message" in messageRenderer) {
     message = messageRenderer.message.runs
-  } else if ("headerSubtext" in messageRenderer) {
+  } else if ("headerSubtext" in messageRenderer && "runs" in messageRenderer.headerSubtext) {
     message = messageRenderer.headerSubtext.runs
   }
 
