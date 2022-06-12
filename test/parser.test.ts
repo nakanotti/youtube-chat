@@ -166,6 +166,35 @@ describe("Parser", () => {
       ])
     })
 
+    test("Milestone", () => {
+      const res = JSON.parse(readFileSync(__dirname + "/testdata/get_live_chat.milestone.json").toString())
+      const [chatItems, continuation] = parseChatData(res)
+      expect(continuation).toBe("test-continuation:01")
+      expect(chatItems).toMatchObject([
+        {
+          author: {
+            name: "authorName",
+            thumbnail: {
+              url: "https://author.thumbnail.url",
+              alt: "authorName",
+            },
+            channelId: "channelId",
+          },
+          message: [
+            {
+              text: "Hello, Milestone World!",
+            },
+          ],
+          isMilestone: true,
+          isMembership: true,
+          isVerified: false,
+          isOwner: false,
+          isModerator: false,
+          timestamp: new Date("2021-01-01"),
+        },
+      ])
+    })
+
     test("Super Chat", () => {
       const res = JSON.parse(readFileSync(__dirname + "/testdata/get_live_chat.super-chat.json").toString())
       const [chatItems, continuation] = parseChatData(res)
