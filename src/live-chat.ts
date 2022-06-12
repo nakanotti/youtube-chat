@@ -16,6 +16,7 @@ interface LiveChatEvents {
  */
 export class LiveChat extends (EventEmitter as new () => TypedEmitter<LiveChatEvents>) {
   liveId?: string
+  title?: string
   #observer?: NodeJS.Timer
   #options?: FetchOptions
   readonly #interval: number = 1000
@@ -40,11 +41,18 @@ export class LiveChat extends (EventEmitter as new () => TypedEmitter<LiveChatEv
     try {
       const options = await fetchLivePage(this.#id)
       this.liveId = options.liveId
+      this.title = options.title
       this.#options = options
 
       this.#observer = setInterval(() => this.#execute(), this.#interval)
 
-      this.emit("start", this.liveId)
+      this.emit(
+        "start",
+        JSON.stringify({
+          id: this.liveId,
+          title: this.title,
+        })
+      )
       return true
     } catch (err) {
       this.emit("error", err)

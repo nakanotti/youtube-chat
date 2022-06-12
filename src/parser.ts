@@ -11,11 +11,14 @@ import {
 } from "./types/yt-response"
 import { ChatItem, ImageItem, MessageItem } from "./types/data"
 
-export function getOptionsFromLivePage(data: string): FetchOptions & { liveId: string } {
+export function getOptionsFromLivePage(data: string): FetchOptions & { liveId: string; title: string } {
   let liveId: string
+  let title: string
   const idResult = data.match(/<link rel="canonical" href="https:\/\/www.youtube.com\/watch\?v=(.+?)">/)
+  const titleResult = data.match(/<title>(.+?) - YouTube<\/title>/)
   if (idResult) {
     liveId = idResult[1]
+    title = titleResult ? titleResult[1] : ""
   } else {
     throw new Error("Live Stream was not found")
   }
@@ -51,6 +54,7 @@ export function getOptionsFromLivePage(data: string): FetchOptions & { liveId: s
 
   return {
     liveId,
+    title,
     apiKey,
     clientVersion,
     continuation,
