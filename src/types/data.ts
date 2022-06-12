@@ -17,6 +17,7 @@ export interface ChatItem {
     color: string
     sticker?: ImageItem
   }
+  isMilestone?: boolean
   isMembership: boolean
   isVerified: boolean
   isOwner: boolean
