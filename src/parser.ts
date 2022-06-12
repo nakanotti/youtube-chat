@@ -212,5 +212,10 @@ function parseActionToChatItem(data: Action): ChatItem | null {
     }
   }
 
+  // マイルストーンであるかの情報追加
+  if (ret.message && messageRenderer.authorBadges) {
+    ret.isMilestone = true;
+  }
+
   return ret
 }
