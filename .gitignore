@@ -7,3 +7,4 @@ testrun.ts
 package-lock.json
 *.map
 coverage
+.DS_Store
