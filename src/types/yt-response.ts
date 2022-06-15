@@ -103,6 +103,9 @@ export interface MessageRendererBase {
       params: string
     }
   }
+  headerPrimaryText?: {
+    runs: MessageRun[]
+  }
   id: string
   timestampUsec: string
   authorExternalChannelId: string
