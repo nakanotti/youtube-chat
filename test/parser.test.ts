@@ -180,14 +180,7 @@ describe("Parser", () => {
               },
             },
           },
-          message: [
-            {
-              text: "上級エンジニア",
-            },
-            {
-              text: " へようこそ！",
-            },
-          ],
+          message: [],
           isMembership: true,
           isVerified: false,
           isOwner: false,
