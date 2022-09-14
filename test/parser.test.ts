@@ -389,7 +389,7 @@ describe("Parser", () => {
 
     test("Replay (Finished)", () => {
       const res = readFileSync(__dirname + "/testdata/replay_page.html").toString()
-      expect(() => getOptionsFromLivePage(res)).toThrow("is finished live")
+      expect(() => getOptionsFromLivePage(res)).toThrow("Live Stream was finished")
     })
 
     test("No such Live", () => {
