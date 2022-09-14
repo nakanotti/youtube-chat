@@ -25,7 +25,7 @@ export function getOptionsFromLivePage(data: string): FetchOptions & { liveId: s
 
   const replayResult = data.match(/['"]isReplay['"]:\s*(true)/)
   if (replayResult) {
-    throw new Error(`${liveId} is finished live`)
+    throw new Error(`Live Stream was finished. LIVE_ID:${liveId}`)
   }
 
   let apiKey: string
@@ -49,7 +49,7 @@ export function getOptionsFromLivePage(data: string): FetchOptions & { liveId: s
   if (continuationResult) {
     continuation = continuationResult[1]
   } else {
-    throw new Error("Continuation was not found")
+    throw new Error("Live Stream was finished. Continuation was not found")
   }
 
   return {
@@ -64,6 +64,9 @@ export function getOptionsFromLivePage(data: string): FetchOptions & { liveId: s
 /** get_live_chat レスポンスを変換 */
 export function parseChatData(data: GetLiveChatResponse): [ChatItem[], string] {
   let chatItems: ChatItem[] = []
+  if (data.continuationContents === undefined) {
+    throw new Error("Live Stream was finished. No continuation contents.")
+  }
   if (data.continuationContents.liveChatContinuation.actions) {
     chatItems = data.continuationContents.liveChatContinuation.actions
       .map((v) => parseActionToChatItem(v))
