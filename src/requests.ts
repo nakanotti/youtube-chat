@@ -19,9 +19,14 @@ export async function fetchChat(options: FetchOptions): Promise<[ChatItem[], str
 }
 
 export async function fetchLivePage(id: { channelId: string } | { liveId: string }) {
+  const regexp = /^(c|user)\//
   const url =
     "channelId" in id
-      ? `https://www.youtube.com/channel/${id.channelId}/live`
+      ? (
+        regexp.test(id.channelId)
+          ? `https://www.youtube.com/${id.channelId}/live`
+          : `https://www.youtube.com/channel/${id.channelId}/live`
+        )
       : `https://www.youtube.com/watch?v=${id.liveId}`
   const res = await axios.get(url)
   return getOptionsFromLivePage(res.data.toString())
