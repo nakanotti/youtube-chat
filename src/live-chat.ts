@@ -17,7 +17,7 @@ type LiveChatEvents = {
 export class LiveChat extends (EventEmitter as new () => TypedEmitter<LiveChatEvents>) {
   liveId?: string
   title?: string
-  #observer?: NodeJS.Timer
+  #observer?: NodeJS.Timeout
   #options?: FetchOptions
   readonly #interval: number = 1000
   readonly #id: YoutubeId

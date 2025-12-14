@@ -4,7 +4,7 @@ debug.ts
 .idea
 *error.log
 testrun.ts
-package-lock.json
 *.map
 coverage
 .DS_Store
+*.tgz
