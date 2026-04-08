@@ -122,4 +122,40 @@ interface EmojiItem extends ImageItem {
 - https://drroot.page/wp/?p=227
 - https://github.com/taizan-hokuto/pytchat
 
+## Development Security and Update Workflow
+
+### Node.js version
+- Minimum supported version is Node.js 20.12.0.
+- Recommended development version is Node.js 25.
+- Use one of the version manager files at repository root:
+  - `.nvmrc`
+  - `.node-version`
+
+### Security checks
+- Run supply-chain checks before and after dependency updates:
+
+```bash
+npm run check-supply-chain
+npm run audit-security
+npm run audit-signatures
+```
+
+### Update scripts
+- Update development environment baseline:
+
+```bash
+npm run update-dev-environment
+```
+
+- Update modules safely (includes axios safe pin and validation):
+
+```bash
+npm run update-modules-safe
+```
+
+### Notes for axios
+- This project pins axios to a safe explicit version instead of using `latest`.
+- Do not use blocked versions reported in supply-chain incidents.
+- Keep `package-lock.json` committed and prefer `npm ci` for reproducible installs.
+
 Thank you!👍

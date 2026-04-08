@@ -16,7 +16,13 @@
     "test": "jest",
     "lint": "eslint \"src/**/*.ts\" \"test/**/*.ts\"",
     "format": "prettier --write \"{src,test}/**/*.ts\"",
-    "format-check": "prettier --check \"{src,test}/**/*.ts\""
+    "format-check": "prettier --check \"{src,test}/**/*.ts\"",
+    "check-supply-chain": "node scripts/check-supply-chain.js",
+    "check-updates": "npm outdated --depth=0",
+    "audit-security": "npm audit --audit-level=moderate",
+    "audit-signatures": "npm audit signatures",
+    "update-dev-environment": "bash scripts/update-dev-environment.sh",
+    "update-modules-safe": "bash scripts/update-modules-safe.sh"
   },
   "files": [
     "dist/**/*.js",
@@ -46,7 +52,7 @@
     "typescript-eslint": "^8.51.0"
   },
   "dependencies": {
-    "axios": "^1.13.2",
+    "axios": "^1.14.0",
     "typed-emitter": "^2.1.0"
   }
 }
