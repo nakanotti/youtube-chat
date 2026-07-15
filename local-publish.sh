@@ -1,6 +1,17 @@
 #!/bin/bash
 set -e
 
+# スクリプトのあるディレクトリへ移動（どこから実行しても動作するように）
+cd "$(dirname "$0")"
+
+# .nvmrc に従って Node.js バージョンを切り替え
+if command -v nvm &>/dev/null; then
+  nvm use
+elif [ -f "$NVM_DIR/nvm.sh" ]; then
+  source "$NVM_DIR/nvm.sh"
+  nvm use
+fi
+
 # 古いパッケージファイルの削除
 rm -f youtube-chat-*.tgz
 
