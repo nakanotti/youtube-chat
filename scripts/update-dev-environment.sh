@@ -4,17 +4,18 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
 
-echo "[update-dev-environment] target Node.js major: 25"
+NODE_VERSION="$(<.nvmrc)"
+echo "[update-dev-environment] target Node.js version: ${NODE_VERSION}"
 if command -v node >/dev/null 2>&1; then
-  NODE_VERSION="$(node -v)"
-  echo "[update-dev-environment] current node: ${NODE_VERSION}"
+  ACTIVE_NODE_VERSION="$(node -v)"
+  echo "[update-dev-environment] current node: ${ACTIVE_NODE_VERSION}"
 fi
 
 if command -v nvm >/dev/null 2>&1; then
-  nvm install 25
-  nvm use 25
+  nvm install "${NODE_VERSION}"
+  nvm use "${NODE_VERSION}"
 else
-  echo "[update-dev-environment] nvm not found. Please ensure Node.js 25 is active."
+  echo "[update-dev-environment] nvm not found. Please install Node.js ${NODE_VERSION} using a version manager."
 fi
 
 echo "[update-dev-environment] refreshing npm metadata"

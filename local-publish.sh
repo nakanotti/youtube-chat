@@ -19,9 +19,9 @@ rm -f youtube-chat-*.tgz
 echo "依存関係のインストール..."
 npm install
 
-# 依存関係の脆弱性を修正
-echo "依存関係の脆弱性を修正..."
-npm audit fix --force
+# 本番依存関係の脆弱性を確認（監査のみで、依存関係は変更しない）
+echo "本番依存関係の脆弱性を確認..."
+npm audit --omit=dev --audit-level=moderate
 
 # ビルド
 echo "ビルド..."

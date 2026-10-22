@@ -126,7 +126,8 @@ interface EmojiItem extends ImageItem {
 
 ### Node.js version
 - Minimum supported version is Node.js 20.12.0.
-- Recommended development version is Node.js 25.
+- Recommended development version is Node.js 26.12.1.
+- Node.js 25 is end-of-life and does not receive security fixes. Use a supported release line (22, 24, or 26) for deployed applications.
 - Use one of the version manager files at repository root:
   - `.nvmrc`
   - `.node-version`
